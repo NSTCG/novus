@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+
+
+
+
+    <style >
+        #feed{
+            margin-bottom: 300px;
+            
+        }
+        body{
+            background-image:url("{{url_for('static',filename="honda.jpg")}}");
+            
+            background-repeat: no-repeat;
+            background position:center;
+            background-size: cover;
+            height:100%;
+            
+            text-align: center;
+                
+        }
+        .button.onclick{
+            width:1cm;
+            height:1cm;
+            background-color:orange;
+            border-radius: 1cm;
+            padding-inline:5cm;
+        }
+        #bt2{
+            border-radius:2000px;
+            background-color: yellowgreen;           
+        }
+        #ln{
+            border-radius:2000px;
+            background-color: lightyellow;   
+            width:50%;        
+        }
+        #myimage{
+            border-top:300px;
+            height:200px;
+            width:200px;
+            vertical-align:center;
+            background-color: darkred;
+            border-radius:50%;
+            
+            
+        }
+        #out1{
+            border: solid .05cm #000000;
+            border-radius: 25px;
+            background-color: antiquewhite;
+            color: rgb(61, 61, 61);
+            width: 70%;
+            
+            
+
+            position: fixed;
+            
+            height: 50px;
+            right: 15%;
+            bottom:0;
+            transform:translateY(-50%);
+            
+
+            text-align:center;
+
+            align-items:center;
+            
+        }
+
+
+        #text{
+            position:fixed;
+            margin-bottom:30px;
+            
+        }
+
+        #robot{
+        width: 45%;
+        height:100%;
+        text-align: center;
+        background: white;
+        
+        }
+
+        @media only screen and (max-width: 500px)  {
+            #myimage{
+                margin-top:30px;
+                height:100px;
+                width:100px;
+                vertical-align:center;
+                background-color: darkred;
+                border-radius:50%;
+
+            }
+            #robot{
+                width: 100%;
+                height:100%;
+                text-align: center;
+                background: white;
+        
+            }
+
+
+    </style>
+
+
+    <div>
+    <form id="frm1" >
+        <input type="text" id="ln" placeholder="language" />
+        <button type="button" value="submit" onclick="update()" id ="bt2" >set</button>
+        <button onclick="window.open('https://www.science.co.il/language/Locale-codes.php');" target="_blank" type="button" value="submit">Lang Code</button>
+    </form>
+    </div>
+
+    <div id="feed">
+        <input type="image" id="myimage" onclick="record()"  src="{{url_for('static',filename='robot.gif')}}" ></input>
+        
+
+        <br id="txt">copy from this tab for reference</br>
+    
+        <input type="text"  placeholder="enter your text here" id="manual">
+        
+    
+        
+    
+        <input onclick="speak(document.getElementById('manual').value);" type='button' value='🔊 Play' />
+
+        
+        <!--<img src="{{url_for('static', filename='robot.gif')}}"  id="robot" onclick="record()">
+
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div> -->
+    
+    </div>
+
+
+
+
+    <form>
+        <input type="text" name="nm2" id="out1" placeholder="result">
+    </form>
+
+
+    <script>
+
+        //var y="{{tospeak}}"             //parameter that we can obtain from python
+        //responsiveVoice.speak(y);       //alternative speak method -- use (  src='https://code.responsivevoice.org/responsivevoice.js' )     
+
+        var x="en";
+        function update(){
+            x =document.forms["frm1"]["ln"].value;
+        }
+
+        // funtion to  utter recognised text at given parameters 
+
+        function tcgspeak(text,voiceinst,ratelevel,pitchlevel){
+        var i;
+        for (i = 0; i < 1; i++) {
+            var msg = new SpeechSynthesisUtterance(text);               //calls SpeechsynthesisUtterence library object and save it as msg
+            console.log(msg)                                            // prints all the functions and parameters on that library object
+            msg.lang = x;                                               // set the language to be uttered ( from user)
+            var voices = window.speechSynthesis.getVoices();            // get the avaiable voice set
+            msg.voice = voices[voiceinst];                              // select the voice instance from the voice set (3 corresponds to female voice)
+            msg.rate = ratelevel;                                       //speed of speaking (range :  0.1 to 10)
+            msg.pitch = pitchlevel;                                     // pitch of the speaking voice (range : 0 to 2)
+            window.speechSynthesis.speak(msg);                          // call the function to speak
+        }
+
+        
+        }   
+        function speak(inp) {
+            
+            console.log("text = " + inp)            //Print the text on browser console
+            tcgspeak(inp,3,.9,-1);                 //give parameters to tcgspeak (text , voice instance (type), rate of utterence(speed),pitch) 
+            console.log("speech succeessfull")
+        }
+
+
+        
+        
+        
+
+        function continousspeach(){
+            name="open";
+            while (name!="close"){
+            var name = window.prompt("Enter what you want to hear"); 
+            console.log(name )
+            tcgspeak(name,3,1,1.5,x);
+
+        }
+        }
+
+        function speak(inp) {
+            
+            console.log("text = " + inp)            //Print the text on browser console
+            tcgspeak(inp,3,.9,-1);                 //give parameters to tcgspeak (text , voice instance (type), rate of utterence(speed),pitch) 
+        }
+
+        speak("Welcome to the interactive AI console... We present to you 'NOVUS'")
+
+        function record() {
+
+            document.getElementById("myimage").style.cssText=" margin-top:10px; height:200px; width:200px;border-radius:50%; background-color:red;";   /*change mic png style while processing */
+
+
+            var recognition = new webkitSpeechRecognition();
+        
+            
+
+            console.log(x)
+            /*let c=document.getElementById("test").innerHTML;
+            console.log(c) */
+            recognition.lang = x;
+
+
+
+
+            
+
+            recognition.onresult = function(event) {
+                console.log(event);
+                /*document.getElementById('speechToText').value = event.results[0][0].transcript;*/
+
+                var answer=""   
+
+
+
+                var nameval= event.results[0][0].transcript;               //jquiry take input from html line via id using #
+                onclick=document.getElementById("myimage").style.cssText="background-Color:darkred;border-radius:50%; height:200px;width:200px;";
+                console.log("you : "+nameval)
+                //document.getElementById('manual').value=nameval;
+
+                $.ajax({
+                    url:'/pm',                                //The app.route path of flask
+                    type:'POST',                            //method used
+                    data:{'text':nameval,"lang":x},                  //data from js that we want to sent to python (recieving data type: immutable multi dictionary)
+                    success:function(response){             //what to do if response is obtained     #note: response is the return data from python funtion after processing dictionary data we sent                
+                        console.log("novus : "+ response["answer"])               //user defined functions
+                        answer=response["answer"]
+                        document.getElementById('out1').value = response["answer"];
+                        document.getElementById('manual').value=response["question"];
+                        console.log(response)
+                        speak(response["answer"]);
+                        
+                    },
+                    error:function(error){                  //what if error pops up
+                        console.log(error)                  // print error on console
+                    }
+
+                });
+
+
+                
+                //onclick=document.getElementById("myimage").style.cssText="background-Color:red; height:100px;width:100px;";
+            
+            }
+            recognition.start();
+
+
+        }
+
+
+
+
+
+
+    function translate(inputtext,inputlanguage,outputlanguage){
+
+        google.load("language", "1");
+
+        function initialize() {
+            google.language.translate(inputtext,inputlanguage,outputlanguage, function(result) {
+                
+                if (result.translation) {
+                    console.log( result);
+                    console.log( result.translation);
+                    return result.translation
+                }
+            });
+        }
+        google.setOnLoadCallback(initialize);
+    }
+
+    </script>
+
+{% endblock %}
+{%block footer%} {% endblock%}
+
+
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<script src='https://code.responsivevoice.org/responsivevoice.js'></script>-->
+    <!-- Input area -->
+    <!--<label for="Speech Recognition">Speech Recognition</label>-->
+    <!--<input type="text" name="" id="speechToText" placeholder="Speak Something" onclick="record()">-->
+    

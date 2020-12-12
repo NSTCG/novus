@@ -1,0 +1,130 @@
+{"intents": [
+        
+        
+        {"tag": "doorclose",
+        "patterns":["lock door","lock the doors" ],
+        "responses":["doors have been closed"],
+        "context_set": ""
+        },
+        {"tag": "dooropen",
+         "patterns":["opendoor","open the doors"],
+        "responses":["doors have been opened"],
+        "context_set": ""
+        },
+        {"tag": "AC_ON",
+        "patterns":["turn on the ac","AC on"],
+        "responses":["turning ON air conditioning"],
+        "context_set": ""
+        },
+        {"tag": "AC_OFF",
+        "patterns":["turn of the AC","AC off" ],
+        "responses":["turning OFF air conditioning"],
+        "context_set": ""
+        },
+        {"tag": "music_ON",
+        "patterns":["turn on the music player","play music" ],
+        "responses":["turning on music player"],
+        "context_set": ""
+        },
+        {"tag": "music_OFF",
+        "patterns":["turn off the music player","stop music"],
+        "responses":["turning off music player"],
+        "context_set": ""
+        },
+        {"tag": "light_ON",
+        "patterns":["turn on the lights","lights on" ],
+        "responses":["turning ON the lights"],
+        "context_set": ""
+        },
+        {"tag": "light_OFF",
+        "patterns":["turn off the lights","lights off"],
+        "responses":["turning OFF the lights"],
+        "context_set": ""
+        },
+        {"tag": "window_open",
+        "patterns":["open windows"],
+        "responses":["opening the windows"],
+        "context_set": ""
+        },
+        {"tag": "window_close",
+        "patterns":["close windows"],
+        "responses":["closing the windows"],
+        "context_set": ""
+        },
+        {"tag": "fold_mirror",
+        "patterns":["fold the mirrors please"],
+        "responses":["folding the mirrors , hold on for a sec"],
+        "context_set": ""
+        },
+        {"tag": "unfold_mirror",
+        "patterns":["unfold the mirrors please"],
+        "responses":["unfolding the mirrors , lets gooo"],
+        "context_set": ""
+        },
+        {"tag": "wiper_on",
+        "patterns":["turn on wiper " ],
+        "responses":["staring the wipers"],
+        "context_set": ""
+        },
+        {"tag": "wiper_off",
+        "patterns":["turn off wiper"],
+        "responses":["okay"],
+        "context_set": ""
+        },
+        {"tag": "call",
+        "patterns":["can you call X please","call X"],
+        "responses":["connecting you to X,please wait"],
+        "context_set": ""
+        },
+        {"tag": "fun",
+        "patterns":["SELF DESTRUCT"],
+        "responses":["self destructing in 5  4  3  2  1    just kidding lol 😇"],
+        "context_set": ""
+        },
+        {"tag": "vol_up",
+        "patterns":["can you turn the volume up please", "can you please turn up the volume"],
+        "responses":["turning up volume"],
+        "context_set": ""
+        },
+        {"tag": "vol_up",
+        "patterns":["can you turn the volume down please", "please turn down the volume"],
+        "responses":["turning down volume"],
+        "context_set": ""
+        },
+        {"tag": "sun_op",
+        "patterns":["please open the sunroof "],
+        "responses":["opening sunroof enjoy"],
+        "context_set": ""
+        },
+        {"tag": "sun_cl",
+         "patterns":["please close the sunroof "],
+        "responses":["closing sunroof"],
+        "context_set": ""
+        },
+        {"tag": "nav",
+        "patterns":["go X ","show me the route to X" ],
+        "responses":["opening navigation","here is the route to X"],
+        "context_set": ""
+        },
+        {"tag": "fog_on",
+        "patterns":["please turn on fog lights","it is foggy today"],
+        "responses":["turning on fog lights"],
+        "context_set": ""
+        },
+        {"tag": "fog_off",
+        "patterns":["please turn off fog lights"],
+        "responses":["turning off fog lights"],
+        "context_set": ""
+        }
+
+
+
+        
+
+        
+
+
+
+
+   ]
+}

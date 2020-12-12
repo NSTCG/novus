@@ -1,0 +1,114 @@
+
+{% extends "base.html" %}
+{% block title %}LOGIN PAGE{% endblock %}
+
+
+
+{% block content %}
+<style>
+    .arrange{
+    top:1cm;
+    }
+
+	.bar {
+	height: 6em;
+  	padding-top: 2em;
+ 	opacity: 0.8;
+ 	background: black;
+	border-top: 3px solid #ccc;
+	border-bottom: 3px solid #ccc;
+  	margin-top: 5.0em;
+	}
+    </style>
+
+<form action="#" autocomplete='off' method="post" id="form_1">
+<p style="color:white";>enter your question:</p>
+
+<input type="text" name="nm" id="speechToText" placeholder="Speak Something" onclick="record()" value="">
+
+<input type="image" name="icon"  id="icon" style="height:30px;width:30px;" src="{{url_for('static', filename='mic4.png')}}"   onclick="record()"  >
+
+
+    
+<p class="bar" style="color:white";><h><b>{{res1}}</b></h></p>
+<p class="bar" style="color:white";><h><b>{{res2}}</b></h></p>
+<a href="https://digi-tonics.blogspot.com/2020/07/instruction-for-nstcg-ai-chatbot.html" class="btn btn-primary">click here for instructions</a>
+</form>
+
+
+
+
+<!-- Below is the script for voice recognition and conversion to text-->
+<script>
+    // funtion to  utter recognised text at given parameters 
+    x="en"                                                         //setting speaking language as english
+    function tcgspeak(text,voiceinst,ratelevel,pitchlevel){
+    var i;
+    for (i = 0; i < 1; i++) {
+        var msg = new SpeechSynthesisUtterance(text);               //calls SpeechsynthesisUtterence library object and save it as msg
+        console.log(msg)                                            // prints all the functions and parameters on that library object
+        msg.lang = x;                                               // set the language to be uttered ( from user)
+        var voices = window.speechSynthesis.getVoices();            // get the avaiable voice set
+        msg.voice = voices[voiceinst];                              // select the voice instance from the voice set (3 corresponds to female voice)
+        msg.rate = ratelevel;                                       //speed of speaking (range :  0.1 to 10)
+        msg.pitch = pitchlevel;                                     // pitch of the speaking voice (range : 0 to 2)
+        window.speechSynthesis.speak(msg);                          // call the function to speak
+    }
+    }
+          
+
+    function speak(inp) {
+        
+        console.log("text = " + inp)            //Print the text on browser console
+        tcgspeak(inp,3,.9,-1);                 //give parameters to tcgspeak (text , voice instance (type), rate of utterence(speed),pitch) 
+    }   
+
+
+    function record() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-GB";
+
+        recognition.onresult = function(event) {
+            console.log(event);
+            document.getElementById('speechToText').value = event.results[0][0].transcript;
+            document.getElementById('form_1').submit();
+            console.log(event.results[0][0].transcript)
+            
+
+        }
+        recognition.start();
+
+    }
+    var response="{{res2}}"
+    var response=response.split(":")[1]
+    speak(response)
+</script>
+
+
+
+{% endblock %}
+{%block footer%}<p style="color:white";>copyrights at @ nithinsteven32@gmail.com</p> {% endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

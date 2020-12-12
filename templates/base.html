@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" text="text/css" href="{{url_for('static', filename='footer.css')}}">
+</head>
+
+
+
+<body onload="record">
+
+
+    <style>
+    body {
+    background: url("static/honda.jpg") no-repeat center center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-bottom: 50px;
+    text-align: center;
+    }
+
+
+    </style>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top:0;">
+        <a class="navbar-brand" href="#">NSTCG CHATBOT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	     <span class="navbar-toggler-icon"></span>
+	    </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav">
+	         <li class="nav-item active">
+                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="login">CHAT NOW</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="update">TRAIN WITH YOUR COMMANDS</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="energycharge">FIND ENERGY CHARGE</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="babu">BABU NAMBOOTHIRI</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="recognise">SPEECH RECOGNITION</a>
+        </li>
+		<li class="nav-item">
+		    <a class="nav-link" href="https://digi-tonics.blogspot.com/2020/07/instruction-for-nstcg-ai-chatbot.html">INSTRUCTIONS</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">ADMIN</a>
+		</li>
+	    </ul>
+        </div>
+    </nav>
+
+
+    <audio autoplay="autoplay" loop="true">
+        <source src="{{url_for('static', filename='ambhigh.mp3')}}" />     
+    </audio>
+
+    <script src="https://www.google.com/jsapi?key=YOUR_GOOGLE_KEY"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    {% block content%}
+    {% endblock %}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+
+
+
+<footer>
+    {% block footer%}
+    {% endblock %}
+    <p style="color:white; 
+                        width:100%;
+ 	                    background: black;
+                        opacity: 1;
+                        transform:translateX(-50%);
+                        position: fixed;
+                        bottom:0;
+                        margin-bottom: 0px;
+                        left:50%;
+                        "                              
+                >copyrights at @ nithinsteven32@gmail.com</p>
+</footer>
+
+
+
+
+</html>
